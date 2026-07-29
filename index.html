@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Happy Friendship Day 🎉 | To My Best Friend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --pink:#ff8ab0; --purple:#b59be8; --yellow:#ffc94a;
+  --blue:#87c4f5;  --bg:#fffaf9;
+}
+
+html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);font-family:'Baloo 2',cursive;}
+
+/* ── pretty pastel background ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 55% 55% at -8% 20%,  rgba(255,182,210,.22) 0%,transparent 70%),
+    radial-gradient(ellipse 50% 60% at -6% 78%,  rgba(197,184,240,.20) 0%,transparent 70%),
+    radial-gradient(ellipse 42% 40% at 105% 8%,  rgba(255,217,130,.20) 0%,transparent 70%),
+    radial-gradient(ellipse 48% 52% at 108% 82%, rgba(135,196,245,.20) 0%,transparent 70%);
+  pointer-events:none;
+}
+
+/* ── dot nav ── */
+.dot-nav{
+  position:fixed;top:18px;left:50%;transform:translateX(-50%);
+  display:flex;gap:9px;z-index:200;
+}
+.dot{
+  width:11px;height:11px;border-radius:50%;
+  background:rgba(255,160,180,.35);
+  transition:background .3s,transform .3s;cursor:pointer;
+}
+.dot.active{background:var(--pink);transform:scale(1.35);}
+
+/* ── floating decorative items ── */
+.deco{
+  position:fixed;font-size:22px;pointer-events:none;z-index:1;user-select:none;
+  animation:floatDeco 4s ease-in-out infinite alternate;
+}
+@keyframes floatDeco{
+  from{transform:translateY(0) rotate(-8deg);}
+  to  {transform:translateY(-16px) rotate(8deg);}
+}
+
+/* ── slides ── */
+#slides-wrapper{position:fixed;inset:0;z-index:10;}
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:20px;
+  opacity:0;pointer-events:none;
+  transform:scale(.95) translateY(30px);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1);
+}
+.slide.active{opacity:1;pointer-events:auto;transform:scale(1) translateY(0);}
+.slide.exit  {opacity:0;transform:scale(1.04) translateY(-30px);}
+
+/* ── GIF — mix-blend-mode removes white bg ── */
+.slide-gif{
+  height:200px;object-fit:contain;
+  mix-blend-mode:multiply;           /* magic: white bg becomes transparent */
+  margin-bottom:4px;
+  animation:gifBounce 3s ease-in-out infinite;
+}
+@keyframes gifBounce{
+  0%,100%{transform:translateY(0);}
+  50%    {transform:translateY(-10px);}
+}
+
+/* ── text ── */
+.psst{
+  font-size:17px;font-family:'Nunito',cursive;font-style:italic;
+  color:var(--pink);margin-bottom:4px;
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+
+.main-text{
+  font-size:clamp(26px,6vw,50px);
+  font-weight:800;line-height:1.25;margin-bottom:10px;
+}
+.sub-text{font-size:clamp(14px,2.8vw,19px);color:#888;font-family:'Nunito',cursive;margin-bottom:6px;}
+
+.col-pink  {color:var(--pink);}
+.col-purple{color:var(--purple);}
+.col-yellow{color:var(--yellow);}
+.col-orange{color:#ff8c42;}
+
+.grad-pink-purple{
+  background:linear-gradient(90deg,#ff8ab0,#c5b8f0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.grad-yellow-purple{
+  background:linear-gradient(90deg,#ffc94a,#b59be8,#ff8ab0);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.grad-pink-yellow{
+  background:linear-gradient(90deg,#ff8ab0,#ffc94a);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ── buttons ── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 40px;border-radius:50px;
+  font-family:'Baloo 2',cursive;font-size:19px;font-weight:700;
+  border:none;cursor:pointer;margin-top:16px;
+  position:relative;overflow:hidden;
+  transition:transform .18s,box-shadow .18s;
+}
+.btn::after{          /* ripple shimmer */
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.4) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .5s;
+}
+.btn:hover::after{transform:translateX(100%);}
+.btn:hover{transform:scale(1.08) translateY(-3px);}
+.btn:active{transform:scale(.96);}
+
+.btn-pink{
+  background:linear-gradient(135deg,#ff8ab0,#ff5c8a);color:#fff;
+  box-shadow:0 5px 0 #d43a68, 0 8px 18px rgba(255,90,140,.35);
+}
+.btn-pink:hover{box-shadow:0 7px 0 #d43a68,0 12px 24px rgba(255,90,140,.4);}
+
+.btn-yellow{
+  background:linear-gradient(135deg,#ffd966,#ffb300);color:#6b4400;
+  box-shadow:0 5px 0 #c98a00,0 8px 18px rgba(255,185,0,.35);
+}
+.btn-yellow:hover{box-shadow:0 7px 0 #c98a00,0 12px 24px rgba(255,185,0,.4);}
+
+.btn-purple{
+  background:linear-gradient(135deg,#c5b8f0,#9676f5);color:#fff;
+  box-shadow:0 5px 0 #6a48c9,0 8px 18px rgba(150,118,245,.35);
+}
+.btn-purple:hover{box-shadow:0 7px 0 #6a48c9,0 12px 24px rgba(150,118,245,.4);}
+
+/* wiggle entrance animation on button */
+.btn-enter{animation:wiggleIn .6s cubic-bezier(.36,.07,.19,.97);}
+@keyframes wiggleIn{
+  0% {transform:scale(0) rotate(-8deg);}
+  60%{transform:scale(1.12) rotate(4deg);}
+  80%{transform:scale(.96) rotate(-2deg);}
+  100%{transform:scale(1) rotate(0);}
+}
+
+/* ── counter (page 2) ── */
+.counter-row{display:flex;gap:16px;margin:10px 0;}
+.counter-box{
+  background:rgba(255,255,255,.7);backdrop-filter:blur(6px);
+  border-radius:20px;padding:16px 26px;min-width:85px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
+  animation:popIn .5s cubic-bezier(.36,.07,.19,.97) both;
+}
+.counter-box:nth-child(1){animation-delay:.1s;}
+.counter-box:nth-child(2){animation-delay:.25s;}
+.counter-box:nth-child(3){animation-delay:.4s;}
+@keyframes popIn{
+  0% {transform:scale(0.6);opacity:0;}
+  70%{transform:scale(1.1);opacity:1;}
+  100%{transform:scale(1);}
+}
+.counter-num{font-size:52px;font-weight:800;line-height:1;}
+.counter-label{font-size:15px;font-weight:600;margin-top:4px;}
+
+/* ── promise card (page 7) ── */
+.promise-card{
+  background:rgba(255,180,210,.15);
+  border-radius:20px;padding:16px 28px;margin:6px 0;
+  border:1px solid rgba(255,140,180,.25);
+}
+
+/* ── YES / NO overlay buttons ── */
+#btn-yes,#btn-no{
+  position:fixed;z-index:300;
+  transition:none; /* no CSS transition — JS controls position */
+}
+
+/* ── heart shower ── */
+.heart-piece{
+  position:fixed;pointer-events:none;z-index:999;
+  animation:fallHeart 2.4s ease-in forwards;
+}
+@keyframes fallHeart{
+  0%  {opacity:1;transform:translateY(-60px) rotate(0deg) scale(1);}
+  80% {opacity:.9;}
+  100%{opacity:0;transform:translateY(110vh) rotate(400deg) scale(.5);}
+}
+
+/* ── start again link ── */
+.restart-link{
+  margin-top:10px;font-size:15px;font-family:'Nunito',cursive;
+  color:var(--pink);text-decoration:none;cursor:pointer;
+  border-bottom:1px dashed var(--pink);
+  transition:opacity .2s;
+}
+.restart-link:hover{opacity:.6;}
+
+/* ── sparkle floating animation for deco ── */
+@keyframes sparkle{
+  0%,100%{opacity:1;transform:scale(1) rotate(0deg);}
+  50%     {opacity:.5;transform:scale(1.3) rotate(20deg);}
+}
+.deco-spark{animation:sparkle 2.5s ease-in-out infinite!important;}
+
+/* ── made with ── */
+.made-with{
+  position:fixed;bottom:8px;right:14px;
+  font-size:11px;color:#ccc;font-family:'Nunito',cursive;z-index:200;
+}
+
+/* ── friendship badge ── */
+.fd-badge{
+  display:inline-block;
+  background:linear-gradient(135deg,#ff8ab0,#c5b8f0);
+  color:#fff;font-size:13px;font-weight:700;
+  font-family:'Nunito',cursive;
+  padding:5px 16px;border-radius:50px;
+  margin-bottom:8px;
+  letter-spacing:.5px;
+  animation:badgePop .6s cubic-bezier(.36,.07,.19,.97) both;
+  box-shadow:0 3px 10px rgba(200,130,200,.35);
+}
+@keyframes badgePop{
+  0%{transform:scale(0) rotate(-12deg);opacity:0;}
+  70%{transform:scale(1.15) rotate(4deg);}
+  100%{transform:scale(1) rotate(0);opacity:1;}
+}
+
+/* ── emoji row ── */
+.emoji-row{
+  display:flex;gap:14px;font-size:28px;
+  margin:6px 0;
+  animation:emojiDance 1.5s ease-in-out infinite alternate;
+}
+@keyframes emojiDance{
+  0%{transform:translateY(0);}
+  100%{transform:translateY(-8px);}
+}
+.emoji-row span:nth-child(even){animation:emojiDance 1.5s ease-in-out .3s infinite alternate;}
+
+/* ── typewriter effect ── */
+.typewriter{
+  overflow:hidden;white-space:nowrap;
+  border-right:3px solid var(--pink);
+  animation:typing 2s steps(30,end) both, blinkCaret .7s step-end infinite;
+  font-size:clamp(16px,3vw,22px);
+  font-family:'Nunito',cursive;
+  color:var(--purple);
+  font-weight:600;
+  margin:4px 0;
+}
+@keyframes typing{from{width:0;}to{width:100%;}}
+@keyframes blinkCaret{50%{border-color:transparent;}}
+
+/* ── friendship day title stamp ── */
+.fd-stamp{
+  font-size:clamp(13px,2.5vw,17px);
+  font-family:'Nunito',cursive;
+  font-weight:700;
+  color:#fff;
+  background:linear-gradient(135deg,#ff8ab0,#ffd966);
+  padding:6px 20px;border-radius:50px;
+  display:inline-block;
+  animation:stampIn .5s cubic-bezier(.36,.07,.19,.97) both;
+  box-shadow:0 4px 12px rgba(255,140,170,.4);
+  margin-bottom:10px;
+}
+@keyframes stampIn{
+  0%{transform:scale(3) rotate(-10deg);opacity:0;}
+  100%{transform:scale(1) rotate(0);opacity:1;}
+}
+
+/* ── intro layer ── */
+#intro-layer {
+  position:fixed; inset:0; z-index:9000;
+  background:#ffffff; /* white grid background */
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  background-image: linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+#intro-layer.hidden {
+  opacity: 0; pointer-events: none; transform: translateY(-20px) scale(1.05);
+}
+
+.intro-title {
+  font-family: 'Baloo 2', cursive;
+  font-size: clamp(32px, 8vw, 60px);
+  color: var(--purple); font-weight: 700;
+  margin-bottom: 20px;
+  animation: fadeInDown 1s ease both;
+}
+
+.delivery-container {
+  position: relative; margin-top: 10px;
+  animation: floatDelivery 3s ease-in-out infinite alternate;
+  cursor: pointer;
+}
+@keyframes floatDelivery {
+  0% {transform:translateY(0px);}
+  100% {transform:translateY(-15px);}
+}
+
+.delivery-gif {
+  width: 280px; height: auto;
+  mix-blend-mode: multiply;
+  margin-bottom: 10px;
+}
+
+.delivery-hint {
+  font-family: 'Nunito', cursive;
+  font-size: 18px; font-style: italic; color: #aaa;
+  margin-top: 10px;
+  animation: pulse 2s infinite;
+}
+
+.intro-envelope {
+  position: absolute; top: 100%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0; pointer-events: none;
+}
+.delivery-container.opened .intro-envelope {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1; pointer-events: auto; z-index: 10;
+}
+.delivery-container.opened .delivery-gif, 
+.delivery-container.opened .delivery-hint, 
+.delivery-container.opened .intro-title {
+  opacity: 0.2; filter: blur(4px);
+}
+
+.envelope-wrapper {
+  position: relative; width: 300px; height: 180px;
+  background: #fdf5f7; border-radius: 4px 4px 10px 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.envelope-front {
+  position: absolute; inset: 0; z-index: 3;
+  border-left: 150px solid #ffffff;
+  border-right: 150px solid #ffffff;
+  border-top: 90px solid transparent;
+  border-bottom: 90px solid #fdf5f7;
+  border-radius: 4px 4px 10px 10px;
+}
+.envelope-flap {
+  position: absolute; top: 0; left: 0; width: 0; height: 0; z-index: 4;
+  border-left: 150px solid transparent;
+  border-right: 150px solid transparent;
+  border-top: 100px solid #ffeef3;
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.delivery-container.opened .envelope-flap {
+  transform: rotateX(180deg); z-index: 1;
+}
+
+.envelope-letter {
+  position: absolute; top: 10px; left: 10px; right: 10px; height: 160px;
+  background: #fff; z-index: 2; border-radius: 8px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 15px; text-align: center;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border: 1px solid #ffeef3;
+}
+.delivery-container.opened .envelope-letter {
+  transform: translateY(-90px);
+}
+
+.letter-text-1 { font-family: 'Baloo 2', cursive; font-size: 24px; color: var(--pink); font-weight:700; }
+.letter-text-2 { font-family: 'Nunito', cursive; font-size: 15px; color: #555; margin-top:5px; font-style:italic;}
+.letter-text-3 { font-family: 'Nunito', cursive; font-size: 14px; color: var(--purple); font-weight:700; margin-top: 10px;}
+.click-to-start {
+  position: absolute; bottom: -40px; left: 0; right: 0; text-align: center;
+  font-family: 'Nunito', cursive; font-size: 14px; letter-spacing: 2px;
+  color: #bbb; opacity: 0;
+  transition: opacity 0.5s 1s;
+}
+.delivery-container.opened .click-to-start { opacity: 1; }
+
+.heart-seal {
+  position: absolute; top: 90px; left: 50%; transform: translate(-50%, -50%);
+  width: 40px; height: 40px; z-index: 5;
+  background: var(--pink); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 20px;
+  transition: opacity 0.3s;
+}
+.delivery-container.opened .heart-seal { opacity: 0; }
+
+@keyframes fadeInDown {
+  0% {opacity:0; transform:translateY(-20px);}
+  100% {opacity:1; transform:translateY(0);}
+}
+
+/* responsive */
+@media(max-height:680px){
+  .slide-gif{height:130px;}
+  .counter-num{font-size:36px;}
+  .btn{padding:10px 28px;font-size:16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- INTRO LAYER -->
+<div id="intro-layer">
+  <h1 class="intro-title">Happy Friendship Day</h1>
+  
+  <div class="delivery-container" id="deliveryBox" onclick="openIntro()">
+    <img src="src1/gallery1.jpg" alt="Delivery" class="delivery-gif" onerror="this.src='src/1.gif'" />
+    <p class="delivery-hint">a delivery for you... (click me)</p>
+
+    <!-- The Envelope -->
+    <div class="intro-envelope">
+      <div class="envelope-wrapper">
+        <div class="envelope-flap"></div>
+        <div class="envelope-letter" onclick="startExperience(event)">
+          <div class="letter-text-1">Hey Shresta!</div>
+          <div class="letter-text-2">I made a little something<br>just for you...</div>
+          <div class="letter-text-3">happy friendship day ✿</div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="heart-seal">🤍</div>
+      </div>
+      <div class="click-to-start">TAP ANYWHERE TO BEGIN</div>
+    </div>
+  </div>
+</div>
+
+<!-- dot nav -->
+<div class="dot-nav" id="dotNav"></div>
+
+<!-- floating decorative stickers -->
+<span class="deco" style="top:7%;left:30%;animation-delay:0s;animation-duration:3.5s">🦋</span>
+<span class="deco" style="top:12%;right:7%;animation-delay:.8s;animation-duration:4s">🌸</span>
+<span class="deco" style="top:52%;right:4%;animation-delay:2s;animation-duration:3s">🦋</span>
+<span class="deco" style="bottom:20%;left:4%;animation-delay:.4s;animation-duration:5s">💗</span>
+<span class="deco" style="bottom:10%;left:38%;animation-delay:1.5s;animation-duration:4.5s">✨</span>
+<span class="deco" style="top:28%;left:3%;animation-delay:.6s;animation-duration:3.8s">🌺</span>
+<span class="deco" style="top:68%;right:16%;animation-delay:2.4s;animation-duration:4.2s">⭐</span>
+<span class="deco" style="bottom:28%;right:3%;animation-delay:3s;animation-duration:3.2s">🌷</span>
+<span class="deco deco-spark" style="top:40%;left:8%;animation-delay:1s;font-size:16px">✦</span>
+<span class="deco deco-spark" style="top:60%;right:24%;animation-delay:2s;font-size:14px">✦</span>
+
+<!-- SLIDES -->
+<div id="slides-wrapper">
+
+  <!-- ── SLIDE 1: Happy Friendship Day! ── -->
+  <div class="slide active" id="slide-0">
+    <div class="fd-stamp">🎉 Happy Friendship Day! 🎉</div>
+    <img class="slide-gif" src="src/1.gif" alt="blinking bear"/>
+    <p class="psst">psst... hey Shresta~</p>
+    <h1 class="main-text col-purple">I have something<br/>special for you...</h1>
+    <div class="emoji-row"><span>🫂</span><span>💛</span><span>🌟</span><span>💛</span><span>🫂</span></div>
+    <button class="btn btn-pink btn-enter" onclick="nextSlide()">Open it! 🎁</button>
+  </div>
+
+  <!-- ── SLIDE 2: Friendship Timeline ── -->
+  <div class="slide" id="slide-1">
+    <div class="fd-badge">🗓️ Our Friendship Timeline</div>
+    <img class="slide-gif" src="src/2.gif" alt="flying animation" style="height:155px;animation:gifBounce 2s ease-in-out infinite;"/>
+    <h1 class="main-text col-pink">We've been friends for...</h1>
+    <div class="counter-row" id="counterRow">
+      <div class="counter-box">
+        <div class="counter-num col-pink" id="cnt-years">0</div>
+        <div class="counter-label col-pink">years</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num col-purple" id="cnt-months">0</div>
+        <div class="counter-label col-purple">months</div>
+      </div>
+      <div class="counter-box">
+        <div class="counter-num col-yellow" id="cnt-days">0</div>
+        <div class="counter-label col-yellow">days</div>
+      </div>
+    </div>
+    <p class="sub-text">of laughter, memories & being there for each other 🌈</p>
+    <button class="btn btn-purple btn-enter" onclick="nextSlide()">Next 🌙</button>
+  </div>
+
+  <!-- ── SLIDE 3: You make everything better ── -->
+  <div class="slide" id="slide-2">
+    <div class="fd-badge">✨ What you mean to me</div>
+    <img class="slide-gif" src="src/4.gif" alt="cute friends gif" style="height:175px;"/>
+    <h1 class="main-text grad-pink-purple">You're the kind of friend<br/>everyone wishes for,</h1>
+    <p class="sub-text">and I'm so lucky you're mine! 🍀</p>
+    <p style="font-size:clamp(17px,3.5vw,25px);font-weight:700;font-family:'Baloo 2',cursive;">
+      <span class="col-pink">my person.</span>
+      <span class="col-purple"> my safe place.</span>
+    </p>
+    <button class="btn btn-yellow btn-enter" onclick="nextSlide()">Next 🌞</button>
+  </div>
+
+  <!-- ── SLIDE 4: The things I love about our friendship ── -->
+  <div class="slide" id="slide-3">
+    <div class="fd-badge">🌟 Things I love about us</div>
+    <img class="slide-gif" src="src/3.gif" alt="panda hi" style="height:170px;"/>
+    <p class="psst" style="color:#ffc83d;">because honestly ✦</p>
+    <h1 class="main-text grad-yellow-purple">No one makes me<br/>laugh like you do,</h1>
+    <p class="sub-text">you turn every ordinary day into something unforgettable 🎈</p>
+    <button class="btn btn-pink btn-enter" onclick="nextSlide()">Next 🩷</button>
+  </div>
+
+  <!-- ── SLIDE 5: Thank you friend ── -->
+  <div class="slide" id="slide-4">
+    <p class="psst" style="color:var(--purple);">from the bottom of my heart 💜</p>
+    <h1 class="main-text col-pink" style="font-size:clamp(32px,7vw,54px);">Thank you for being<br/>MY BEST FRIEND 🩷</h1>
+    <img class="slide-gif" src="src/5.gif" alt="friends hugging" style="height:200px;"/>
+    <p class="sub-text" style="margin-top:6px;">for the late night talks, the silly memes,</p>
+    <p style="font-size:clamp(15px,3vw,20px);font-weight:700;font-family:'Baloo 2',cursive;">
+      <span class="col-pink">the inside jokes 😂</span><span class="col-purple"> &amp; being there always 🤝</span>
+    </p>
+    <button class="btn btn-yellow btn-enter" onclick="nextSlide()">Next ✨</button>
+  </div>
+
+  <!-- ── SLIDE 6: BFF Promise ── -->
+  <div class="slide" id="slide-5">
+    <div class="fd-badge">🤞 BFF Pinky Promise</div>
+    <img class="slide-gif" src="src/7.gif" alt="cute rabbit" style="height:165px;"/>
+    <p class="psst">pretty please Shresta ~</p>
+    <h1 class="main-text col-pink">Will you be my<br/>bestie forever? 🤞</h1>
+    <p class="sub-text">(click Yes, I dare you to click No 😤)</p>
+    <div style="height:90px;"></div>
+  </div>
+
+  <!-- ── SLIDE 7: BFF Forever ── -->
+  <div class="slide" id="slide-6">
+    <img class="slide-gif" src="src/3page.gif" alt="celebration" style="height:185px;"/>
+    <p class="psst" style="color:#ffc83d;">yayyyy~ 🎀 BFF confirmed! 🎀</p>
+    <h1 class="main-text grad-pink-purple">Official BFFs<br/>Now &amp; Forever! 🏆</h1>
+    <div class="promise-card">
+      <p class="sub-text">you're <strong style="color:#ff6096;">legally required</strong> to be my friend forever now 😤🤝</p>
+      <div class="emoji-row" style="justify-content:center;margin-top:6px;"><span>🎉</span><span>🌟</span><span>🎊</span><span>💛</span><span>🎈</span></div>
+    </div>
+    <button class="btn btn-pink btn-enter" onclick="nextSlide()">Yay! 🥳</button>
+  </div>
+
+  <!-- ── SLIDE 8: Happy Friendship Day finale ── -->
+  <div class="slide" id="slide-7">
+    <div class="fd-stamp">🎂 Happy Friendship Day! 🎂</div>
+    <img class="slide-gif" src="src/6.gif" alt="cute duck" style="height:175px;"/>
+    <h1 class="main-text grad-pink-yellow" style="font-size:clamp(26px,6vw,50px);">Here's to us —<br/>Best Friends Always! 🥂</h1>
+    <p class="psst">~ today, tomorrow &amp; forever ~</p>
+    <div class="emoji-row" style="justify-content:center;"><span>🎊</span><span>🫂</span><span>🌈</span><span>🫂</span><span>🎊</span></div>
+    <button class="btn btn-yellow btn-enter" id="heartBtn" onclick="showerHearts()">Celebrate Us! 🎉</button>
+    <span class="restart-link" onclick="startAgain()">Start Again ↺</span>
+  </div>
+
+</div>
+
+<!-- YES / NO fixed overlay (shown only on slide 6) -->
+<button class="btn btn-yellow" id="btn-yes" style="display:none;" onclick="yesClicked()">Yes, BFF forever! 🤞</button>
+<button class="btn btn-purple" id="btn-no"  style="display:none;" onmouseover="moveNo()" ontouchstart="moveNo()" onclick="moveNo()">No 😈</button>
+
+<div class="made-with">Made with 💕</div>
+
+<!-- ════════════════════════ JS ════════════════════════ -->
+<script>
+const TOTAL = 8;
+let cur = 0;
+
+/* ── dots ── */
+const dotNav = document.getElementById('dotNav');
+for(let i=0;i<TOTAL;i++){
+  const d=document.createElement('div');
+  d.className='dot'+(i===0?' active':'');
+  d.addEventListener('click',()=>goTo(i));
+  dotNav.appendChild(d);
+}
+function updateDots(n){
+  document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===n));
+}
+
+/* ── intro sequence ── */
+function openIntro() {
+  const box = document.getElementById('deliveryBox');
+  if(!box.classList.contains('opened')) {
+    box.classList.add('opened');
+  } else {
+    // If already opened, tapping anywhere starts the experience
+    startExperience(event);
+  }
+}
+
+function startExperience(e) {
+  if(e) e.stopPropagation(); // prevent triggering parent onclick
+  const layer = document.getElementById('intro-layer');
+  layer.classList.add('hidden');
+  setTimeout(() => {
+    layer.style.display = 'none';
+  }, 1000); // Wait for transition
+  animCounters(); // start counters if on slide 1 (wait, slide is 0 initially)
+}
+
+/* ── navigation ── */
+function goTo(n){
+  if(n===cur) return;
+  const slides=document.querySelectorAll('.slide');
+
+  // exit current
+  slides[cur].classList.remove('active');
+  slides[cur].classList.add('exit');
+  const prev=cur;
+  setTimeout(()=>slides[prev].classList.remove('exit'),480);
+
+  cur=n;
+  // re-trigger btn animation
+  slides[cur].querySelectorAll('.btn').forEach(b=>{
+    b.classList.remove('btn-enter');
+    void b.offsetWidth; // reflow
+    b.classList.add('btn-enter');
+  });
+  slides[cur].classList.add('active');
+  updateDots(cur);
+
+  // yes/no visibility
+  const by=document.getElementById('btn-yes');
+  const bn=document.getElementById('btn-no');
+  if(cur===5){
+    by.style.display='inline-flex';
+    bn.style.display='inline-flex';
+    resetYesNo();
+  } else {
+    by.style.display='none';
+    bn.style.display='none';
+  }
+
+  if(cur===1) animCounters();
+}
+
+function nextSlide(){ if(cur<TOTAL-1) goTo(cur+1); }
+function startAgain(){ goTo(0); }
+
+/* ── counter ── */
+// ✏️  Change this to the real friendship start date:
+const SINCE = new Date('2026-02-28'); // Exactly 152 days ago from today!
+
+function animCounters(){
+  const now=new Date();
+  let y=now.getFullYear()-SINCE.getFullYear();
+  let m=now.getMonth()-SINCE.getMonth();
+  let d=now.getDate()-SINCE.getDate();
+  if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
+  if(m<0){y--;m+=12;}
+  countUp('cnt-years',y,800);
+  countUp('cnt-months',m,950);
+  countUp('cnt-days',d,1100);
+}
+function countUp(id,target,dur){
+  const el=document.getElementById(id);
+  let start=null;
+  (function step(ts){
+    if(!start)start=ts;
+    const p=Math.min((ts-start)/dur,1);
+    el.textContent=Math.floor(p*target);
+    if(p<1)requestAnimationFrame(step);
+    else el.textContent=target;
+  })(performance.now());
+}
+
+/* ── Yes / No ── */
+function resetYesNo(){
+  const by=document.getElementById('btn-yes');
+  const bn=document.getElementById('btn-no');
+  const mid=window.innerWidth/2;
+  const bot=window.innerHeight*0.73;
+  by.style.cssText=`display:inline-flex;left:${mid-175}px;top:${bot}px;`;
+  bn.style.cssText=`display:inline-flex;left:${mid+15}px;top:${bot}px;`;
+}
+
+function moveNo(){
+  const bn=document.getElementById('btn-no');
+  const pad=16;
+  const bw=bn.offsetWidth, bh=bn.offsetHeight;
+  const maxX=window.innerWidth-bw-pad;
+  const maxY=window.innerHeight-bh-pad;
+  const nx=pad+Math.random()*maxX;
+  const ny=pad+Math.random()*maxY;
+  bn.style.left=nx+'px';
+  bn.style.top=ny+'px';
+  bn.style.transform=`rotate(${(Math.random()-.5)*22}deg) scale(${.88+Math.random()*.24})`;
+}
+
+function yesClicked(){
+  document.getElementById('btn-yes').style.display='none';
+  document.getElementById('btn-no').style.display='none';
+  nextSlide();
+}
+
+window.addEventListener('resize',()=>{ if(cur===5) resetYesNo(); });
+
+/* ── Heart shower ── */
+const HEARTS=['💗','💛','🌟','🎉','🎊','🫂','✨','🌈','🍀','🎈','💫','🌸'];
+function showerHearts(){
+  document.getElementById('heartBtn').textContent='💗💗💗';
+  for(let i=0;i<70;i++){
+    setTimeout(()=>{
+      const h=document.createElement('div');
+      h.className='heart-piece';
+      h.textContent=HEARTS[Math.floor(Math.random()*HEARTS.length)];
+      h.style.cssText=`
+        left:${Math.random()*100}vw;
+        top:-50px;
+        font-size:${16+Math.random()*26}px;
+        animation-duration:${1.4+Math.random()*1.4}s;
+        animation-delay:${Math.random()*.3}s;
+      `;
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),3500);
+    }, i*45);
+  }
+  setTimeout(()=>{
+    document.getElementById('heartBtn').textContent='Shower me in hearts 💗';
+  },4000);
+}
+
+/* init */
+// if(cur===1) animCounters(); // handled by dot nav or intro
+</script>
+</body>
+</html>
